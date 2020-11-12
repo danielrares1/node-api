@@ -3,13 +3,20 @@ const router = express.Router();
 
 router.get("/", (req, res, next) => {
   res.status(200).send({
-    mensagem: "busca os pedidos (GET)",
+    mensagem: "busca os pedidos (GET)"
   });
 });
 
 router.post("/", (req, res, next) => {
+  const pedido = {
+    nome:req.body.nome,
+    quantidade: req.body.quantidade,
+    valor: req.body.valor,
+  };
+
   res.status(201).send({
     mensagem: "envia os pedidos (POST)",
+    pedido: pedido
   });
 });
 
@@ -26,7 +33,7 @@ router.get("/:status", (req, res, next) => {
 
 router.delete("/", (req, res, next) => {
   res.status(201).send({
-    mensagem: "deleta os pedidos (DELETE)",
+    mensagem: "deleta os pedidos (DELETE)"
   });
 });
 
