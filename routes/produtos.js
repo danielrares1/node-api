@@ -1,36 +1,43 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-    res.status(200).send({
-        mensagem: 'usando o get'
-    })
+router.get("/", (req, res, next) => {
+  res.status(200).send({
+    mensagem: "busca os produtos (GET)",
+  });
 });
 
-router.post('/', (req, res, next) => {
-    res.status(201).send({
-        mensagem: 'usando o post'
-    })
+router.post("/", (req, res, next) => {
+  res.status(201).send({
+    mensagem: "envia os produtos (POST)",
+  });
 });
 
-router.get('/:id_produto', (req, res, next) => {
+router.get("/:id_produto", (req, res, next) => {
+  const id = req.params.id_produto;
 
-    const id = req.params.id_produto
-
-    if(id === 'G'){
-        res.status(200).send({
-            mensagem: 'camiseta tamanho G',
-            id: id
-        })
-    } else {
-      res.status(200).send({
-          mesnagem: 'tamanho indisponivel'
-      })  
-    }
-
+  if (id === "G" || id === "g") {
     res.status(200).send({
-        mensagem: 'usando get by id'
-    })
+      mensagem: "busca os produtos por id (GETBYID)",
+      id: id,
+    });
+  } else {
+    res.status(200).send({
+      mensagem: "error",
+    });
+  }
+});
+
+router.patch("/", (req, res, next) => {
+  res.status(201).send({
+    mensagem: "atualiza os produtos (PATCH)",
+  });
+});
+
+router.delete("/", (req, res, next) => {
+  res.status(201).send({
+    mensagem: "deleta os produtos(DELETE)",
+  });
 });
 
 module.exports = router;
