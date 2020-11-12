@@ -13,7 +13,21 @@ app.use(bodyParser.json());
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
-})
+    res.header(
+    'Access-Control-Allow-Header', 
+    'X-Requrested-With',
+    'Authorization',
+    'Content-Type',
+    'Accept',
+    );
+
+    if(req.method === 'OPTIONS'){
+        res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+        return res.status(200).send({});
+    }
+
+    next();
+});
 
 app.use("/produtos", rotaProdutos);
 app.use("/pedidos", rotaPedidos);
